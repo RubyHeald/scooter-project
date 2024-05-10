@@ -4,30 +4,34 @@ const User = require("./User")
 
 class ScooterApp {
   constructor(stations, registeredUsers){
-    this.stations = stations
-    this.registeredUsers = registeredUsers
-  }
+    this.stations ={
+      station1: [],
+      station2: [],
+      station3: []
+    } 
 
+  this.registeredUsers = []
+}
   registeredUser(username, password, age){
       
     if (age < 18) throw new Error ('too young to register')
 
-    else if (username instanceof this.registeredUser){
+    else if (this.registeredUsers.includes(username)){
       return "user has been registered"
     }
     else {
       new User (username, password, age)
+      ScooterApp.registeredUser.push(new User)
     }
 }
 
   loginUser(username, password){
-    if (username === username && password === password){
+    if (username === User.username && User.password === password){
       return ("user has been logged in")
     }
     else {
       return ("Username or password is inncorrect")
-    }
-  
+  }
 }
 
   logoutUser(username){
@@ -37,7 +41,7 @@ class ScooterApp {
   }
   if (this.registeredUser.username === username){
        this.registeredUser.logout()
-       console.log(`user ${username} is logged out`)
+       console.log(`user ${User.username} is logged out`)
   }
 }
 
@@ -58,7 +62,6 @@ class ScooterApp {
     if (!station){
       throw new Error ("no such station")
     }
-
   }
 
   rentScooter(scooter, user){
